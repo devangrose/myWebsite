@@ -1,0 +1,58 @@
+#!/usr/bin/env bash
+
+# This file is used to test what's up and running on the server
+
+ping_server(){
+  echo 'Pinging' $1 '...'
+  if curl --silent --max-time 3 $1 > tests.log; then
+    echo "Ping was successful"
+    echo "Result:"
+    cat tests.log
+    echo
+    echo
+  else 
+    echo 'Pinging' $1 'failed'
+    echo
+    touch tests.log
+  fi
+  
+  # Clean up
+  rm tests.log
+}
+
+#
+# Ping IPs with root
+#
+
+# Ping localhost
+ping_server localhost
+
+# Ping private ip
+ping_server 172.31.42.65 'Private IP'
+
+# Ping public ip
+ping_server 18.217.35.70 'Public IP'
+
+# Ping elastic ip
+ping_server 18.218.26.106 'Elastic IP'
+
+# Ping domain name
+ping_server devangrose.me
+
+#
+# Ping IPs with some extension
+
+# Ping localhost
+ping_server localhost/fallinlovewith/titties
+
+# Ping private ip
+ping_server 172.31.42.65/fallinlovewith/titties 'private_ip/fallinlovewith/titties'
+
+# Ping public ip
+ping_server 18.217.35.70/fallinlovewith/titties "public_ip/fallinlovewith/titties"
+
+# Ping elastic ip
+ping_server 18.218.26.106/fallinlovewith/titties 'elastic_ip/fallinlovewith/titties'
+
+# Ping domain name
+ping_server devangrose.me/fallinlovewith/titties

@@ -1,21 +1,20 @@
 var express = require("express");
 var app=express();
 
-
-
-app.listen(8080, function(){
-	console.log("Server has successfully started! Listening on port 8080.");
-});
+app.set('view engine', 'ejs');
 
 app.get('/', function(req,res) {
-	res.render("home.ejs");
+	res.redirect("/home");
 });
 
-app.get("/fallinlovewith/:thing",function(req,res){
-	var thing = req.params.thing;
-	res.send("You fell in love with" + thing);
+app.get('/about', function(req,res){
+	res.render("pages/about",{title: "About Me"});
 });
-
 app.get('/home',function(req,res){
-	res.send("Okay this works now");
+	res.render("pages/home", {title: 'Home'});
 });
+
+app.listen(80,function(){
+	console.log(process.env.IP);
+	console.log("Server has successfully started!");
+ });

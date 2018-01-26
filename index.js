@@ -1,6 +1,9 @@
 var express = require("express");
+var serveStatic = require("serve-static");
 var app=express();
 
+app.use(serveStatic('images'));
+app.use(serveStatic('styles'));
 app.set('view engine', 'ejs');
 
 app.get('/', function(req,res) {

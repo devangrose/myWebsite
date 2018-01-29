@@ -1,7 +1,16 @@
 <% include ../partials/header_big %>
 <div class="jumbotron">
         <h1>Welcome to my site, dude!</h1>
+	<hr>
         <p>I hope you have a totally tubular time here bro!</p>
+	<p> The current temperature in Seattle is <%= data.temp %> degrees!
+		<% if (data.temp < 40) { %>
+		Its freezing! Better bundle up!
+		<% } else if (data.temp < 75){  %>
+		What a nice day! 
+		<% } else { %> 
+		Oh boy! Its hot outside!
+		<% } %> </p>
     </div>
 </main>
 
